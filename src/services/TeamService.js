@@ -29,6 +29,7 @@ module.exports = {
       )
     })
   },
+
   getOne: (team_id) => {
     return new Promise((accepted, rejected) => {
       database.query(
@@ -51,6 +52,48 @@ module.exports = {
           }
         }
       )
+    })
+  },
+
+  insert: (team_name, team) => {
+    return new Promise((accepted, rejected) => {
+      let team_id
+
+      database.query(
+        'INSERT INTO Team (name) VALUES (?)',
+        [team_name],
+        (error, results) => {
+          if (error) {
+            rejected(error)
+            return
+          }
+          team_id = results.insertId
+        }
+      )
+
+      team.map((team_member) => {
+        database.query(
+          'INSERT INTO Team_Member (team_id, pokemon_id, url, nature_id, item_id, move_1_id, move_2_id, move_3_id, move_4_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+          [
+            team_id,
+            team_member.pokemon_id,
+            team_member.url,
+            team_member.nature_id,
+            team_member.item_id,
+            team_member.move_1_id,
+            team_member.move_2_id,
+            team_member.move_3_id,
+            team_member.move_4_id,
+          ],
+          (error, results) => {
+            if (error) {
+              rejected(error)
+              return
+            }
+            accepted({ team: team_id, team: results[0] })
+          }
+        )
+      })
     })
   },
 }

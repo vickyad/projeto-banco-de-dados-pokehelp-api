@@ -8,6 +8,5 @@ router.get('/pokemons', PokemonController.getAll)
 router.get('/pokemon/:pokedex_number', PokemonController.getOne)
 router.get('/teams', TeamController.getAll)
 router.get('/team/:team_id', TeamController.getOne)
-
-// router.post('/team', PokemonController.insert)
+router.post('/team', TeamController.insert)
 module.exports = router
