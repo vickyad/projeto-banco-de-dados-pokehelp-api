@@ -46,7 +46,34 @@ module.exports = {
               name: results[0][0].name,
               team: results[1],
             }
-            accepted(data)
+
+            // console.log(data)
+            database.query(
+              'SELECT name FROM Pokemons WHERE pokemon_id = ? OR pokemon_id = ? OR pokemon_id = ? OR pokemon_id = ? OR pokemon_id = ? OR pokemon_id = ?',
+              [
+                data.team[0].pokemon_id,
+                data.team[1].pokemon_id,
+                data.team[2].pokemon_id,
+                data.team[3].pokemon_id,
+                data.team[4].pokemon_id,
+                data.team[5].pokemon_id,
+              ],
+              (error, results) => {
+                if (error) {
+                  rejected(error)
+                  return
+                }
+
+                data.team.map((teamMember, index) => {
+                  data.team[index] = {
+                    ...teamMember,
+                    name: results[index].name,
+                  }
+                })
+                accepted(data)
+              }
+            )
+            console.log(data)
           } else {
             accepted(false)
           }
@@ -57,8 +84,6 @@ module.exports = {
 
   insert: (team_name, team) => {
     return new Promise((accepted, rejected) => {
-      let team_id
-
       database.query(
         'INSERT INTO Team (name) VALUES (?)',
         [team_name],
@@ -67,15 +92,53 @@ module.exports = {
             rejected(error)
             return
           }
-          team_id = results.insertId
+          let team_id = results.insertId
+
+          team.map((team_member) => {
+            database.query(
+              'INSERT INTO Team_Member (team_id, pokemon_id, url, nature_id, item_id, move_1_id, move_2_id, move_3_id, move_4_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+              [
+                team_id,
+                team_member.pokemon_id,
+                team_member.url,
+                team_member.nature_id,
+                team_member.item_id,
+                team_member.move_1_id,
+                team_member.move_2_id,
+                team_member.move_3_id,
+                team_member.move_4_id,
+              ],
+              (error, results) => {
+                if (error) {
+                  rejected(error)
+                  return
+                }
+                accepted(team_id)
+              }
+            )
+          })
+        }
+      )
+    })
+  },
+
+  edit: (team_id, team_name, team) => {
+    return new Promise((accepted, rejected) => {
+      database.query(
+        'UPDATE Team SET name= ? WHERE team_id = ?',
+        [team_name, team_id],
+        (error, results) => {
+          if (error) {
+            rejected(error)
+            return
+          }
         }
       )
 
       team.map((team_member) => {
         database.query(
-          'INSERT INTO Team_Member (team_id, pokemon_id, url, nature_id, item_id, move_1_id, move_2_id, move_3_id, move_4_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+          'UPDATE Team_Member SET pokemon_id = ?, url = ?, nature_id = ?, item_id = ?, move_1_id = ?, move_2_id = ?, move_3_id = ?, move_4_id = ? WHERE team_id = ? AND member_id = ?',
           [
-            team_id,
             team_member.pokemon_id,
             team_member.url,
             team_member.nature_id,
@@ -84,16 +147,34 @@ module.exports = {
             team_member.move_2_id,
             team_member.move_3_id,
             team_member.move_4_id,
+            team_id,
+            team_member.member_id,
           ],
           (error, results) => {
             if (error) {
               rejected(error)
               return
             }
-            accepted({ team: team_id, team: results[0] })
+            accepted(team_id)
           }
         )
       })
+    })
+  },
+
+  delete: (team_id) => {
+    return new Promise((accepted, rejected) => {
+      database.query(
+        'DELETE FROM Team_Member WHERE team_id = ?; DELETE FROM Team WHERE team_id = ?',
+        [team_id, team_id],
+        (error, results) => {
+          if (error) {
+            rejected(error)
+            return
+          }
+          accepted(results)
+        }
+      )
     })
   },
 }

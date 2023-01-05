@@ -4,7 +4,7 @@ module.exports = {
   getAll: () => {
     return new Promise((accepted, rejected) => {
       database.query(
-        'SELECT pokedex_number, name, generation, type_1, type_2 from Pokemons',
+        'SELECT pokemon_id, pokedex_number, url, name, generation, type_1, type_2 from Pokemons',
         (error, results) => {
           if (error) {
             rejected(error)
