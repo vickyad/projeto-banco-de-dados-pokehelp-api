@@ -14,6 +14,18 @@ router.put('/team/:team_id', TeamController.edit)
 router.delete('/team/:team_id', TeamController.delete)
 
 router.get('/analysis/types', ChartsController.types)
+router.get(
+  '/analysis/type_generation/:generation',
+  ChartsController.typePerGeneration
+)
+router.get('/analysis/type_legendary', ChartsController.typeLegendary)
 router.get('/analysis/type_combinations', ChartsController.typeCombination)
+router.get('/analysis/avg_stats/:type', ChartsController.avgStats)
 router.get('/analysis/common_moves', ChartsController.commonMoves)
+router.get('/analysis/unique_moves_types', ChartsController.uniqueMovesTypes)
+router.get(
+  '/analysis/unique_moves_categories',
+  ChartsController.uniqueMovesCategory
+)
+
 module.exports = router
