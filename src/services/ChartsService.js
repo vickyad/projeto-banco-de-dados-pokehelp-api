@@ -4,7 +4,7 @@ module.exports = {
   types: () => {
     return new Promise((accepted, rejected) => {
       database.query(
-        'SELECT type_, sum(total) total FROM (SELECT type_1 as type_, COUNT(*) as total FROM pokedex.pokemons GROUP BY type_1 UNION ALL SELECT type_2 as type_, COUNT(*) as total FROM pokedex.pokemons WHERE type_2 IS NOT NULL GROUP BY type_2) t GROUP BY type_',
+        'SELECT type_, sum(total) total FROM (SELECT type_1 as type_, COUNT(*) as total FROM pokedex.pokemons GROUP BY type_1 UNION ALL SELECT type_2 as type_, COUNT(*) as total FROM pokedex.pokemons WHERE type_2 IS NOT NULL GROUP BY type_2) t GROUP BY type_ ORDER BY type_',
         (error, results) => {
           if (error) {
             rejected(error)
@@ -18,7 +18,7 @@ module.exports = {
   typePerGeneration: (generation) => {
     return new Promise((accepted, rejected) => {
       database.query(
-        'SELECT type_, sum(total) total FROM (SELECT type_1 as type_, generation, COUNT(*) as total FROM pokedex.pokemons WHERE generation = 1 GROUP BY type_1 UNION ALL SELECT type_2 as type_, generation, COUNT(*) as total FROM pokedex.pokemons WHERE type_2 IS NOT NULL AND generation = 1 GROUP BY type_2) t GROUP BY type_ ORDER BY type_;',
+        'SELECT type_, sum(total) total FROM (SELECT type_1 as type_, generation, COUNT(*) as total FROM pokedex.pokemons WHERE generation = ? GROUP BY type_1 UNION ALL SELECT type_2 as type_, generation, COUNT(*) as total FROM pokedex.pokemons WHERE type_2 IS NOT NULL AND generation = ? GROUP BY type_2) t GROUP BY type_ ORDER BY type_',
         [generation, generation],
         (error, results) => {
           if (error) {
@@ -33,7 +33,7 @@ module.exports = {
   typeLegendary: () => {
     return new Promise((accepted, rejected) => {
       database.query(
-        'SELECT type_, sum(total) total FROM (SELECT type_1 as type_, COUNT(*) as total FROM pokedex.pokemons WHERE is_legendary = 1 GROUP BY type_1 UNION ALL SELECT type_2 as type_, COUNT(*) as total FROM pokedex.pokemons WHERE type_2 IS NOT NULL AND is_legendary = 1 GROUP BY type_2) t GROUP BY type_;',
+        'SELECT type_, sum(total) total FROM (SELECT type_1 as type_, COUNT(*) as total FROM pokedex.pokemons WHERE is_legendary = 1 GROUP BY type_1 UNION ALL SELECT type_2 as type_, COUNT(*) as total FROM pokedex.pokemons WHERE type_2 IS NOT NULL AND is_legendary = 1 GROUP BY type_2) t GROUP BY type_ ORDER BY type_',
         (error, results) => {
           if (error) {
             rejected(error)
@@ -75,7 +75,7 @@ module.exports = {
   uniqueMovesTypes: () => {
     return new Promise((accepted, rejected) => {
       database.query(
-        'SELECT move_type, COUNT(*) as total FROM (SELECT pokedex.pokemons_moves.move_id , pokedex.moves.type as move_type FROM pokedex.pokemons_moves INNER JOIN pokedex.moves ON pokedex.pokemons_moves.move_id = pokedex.moves.move_id GROUP BY move_id HAVING count(*) = 1) as t GROUP BY move_type;',
+        'SELECT move_type, COUNT(*) as total FROM (SELECT pokedex.pokemons_moves.move_id , pokedex.moves.type as move_type FROM pokedex.pokemons_moves INNER JOIN pokedex.moves ON pokedex.pokemons_moves.move_id = pokedex.moves.move_id GROUP BY move_id HAVING count(*) = 1) as t GROUP BY move_type ORDER BY move_type',
         (error, results) => {
           if (error) {
             rejected(error)
