@@ -132,33 +132,81 @@ module.exports = {
             rejected(error)
             return
           }
+
+          database.query(
+            'UPDATE Team_Member SET pokemon_id = ?, url = ?, nature_id = ?, item_id = ?, move_1_id = ?, move_2_id = ?, move_3_id = ?, move_4_id = ? WHERE team_id = ? AND member_id = ?;UPDATE Team_Member SET pokemon_id = ?, url = ?, nature_id = ?, item_id = ?, move_1_id = ?, move_2_id = ?, move_3_id = ?, move_4_id = ? WHERE team_id = ? AND member_id = ?;UPDATE Team_Member SET pokemon_id = ?, url = ?, nature_id = ?, item_id = ?, move_1_id = ?, move_2_id = ?, move_3_id = ?, move_4_id = ? WHERE team_id = ? AND member_id = ?;UPDATE Team_Member SET pokemon_id = ?, url = ?, nature_id = ?, item_id = ?, move_1_id = ?, move_2_id = ?, move_3_id = ?, move_4_id = ? WHERE team_id = ? AND member_id = ?;UPDATE Team_Member SET pokemon_id = ?, url = ?, nature_id = ?, item_id = ?, move_1_id = ?, move_2_id = ?, move_3_id = ?, move_4_id = ? WHERE team_id = ? AND member_id = ?;UPDATE Team_Member SET pokemon_id = ?, url = ?, nature_id = ?, item_id = ?, move_1_id = ?, move_2_id = ?, move_3_id = ?, move_4_id = ? WHERE team_id = ? AND member_id = ?;',
+            [
+              team[0].pokemon_id,
+              team[0].url,
+              team[0].nature_id,
+              team[0].item_id,
+              team[0].move_1_id,
+              team[0].move_2_id,
+              team[0].move_3_id,
+              team[0].move_4_id,
+              team_id,
+              team[0].member_id,
+              team[1].pokemon_id,
+              team[1].url,
+              team[1].nature_id,
+              team[1].item_id,
+              team[1].move_1_id,
+              team[1].move_2_id,
+              team[1].move_3_id,
+              team[1].move_4_id,
+              team_id,
+              team[1].member_id,
+              team[2].pokemon_id,
+              team[2].url,
+              team[2].nature_id,
+              team[2].item_id,
+              team[2].move_1_id,
+              team[2].move_2_id,
+              team[2].move_3_id,
+              team[2].move_4_id,
+              team_id,
+              team[2].member_id,
+              team[3].pokemon_id,
+              team[3].url,
+              team[3].nature_id,
+              team[3].item_id,
+              team[3].move_1_id,
+              team[3].move_2_id,
+              team[3].move_3_id,
+              team[3].move_4_id,
+              team_id,
+              team[3].member_id,
+              team[4].pokemon_id,
+              team[4].url,
+              team[4].nature_id,
+              team[4].item_id,
+              team[4].move_1_id,
+              team[4].move_2_id,
+              team[4].move_3_id,
+              team[4].move_4_id,
+              team_id,
+              team[4].member_id,
+              team[5].pokemon_id,
+              team[5].url,
+              team[5].nature_id,
+              team[5].item_id,
+              team[5].move_1_id,
+              team[5].move_2_id,
+              team[5].move_3_id,
+              team[5].move_4_id,
+              team_id,
+              team[5].member_id,
+            ],
+            (error, results) => {
+              if (error) {
+                rejected(error)
+                return
+              }
+              accepted(team_id)
+            }
+          )
         }
       )
-
-      team.map((team_member) => {
-        database.query(
-          'UPDATE Team_Member SET pokemon_id = ?, url = ?, nature_id = ?, item_id = ?, move_1_id = ?, move_2_id = ?, move_3_id = ?, move_4_id = ? WHERE team_id = ? AND member_id = ?',
-          [
-            team_member.pokemon_id,
-            team_member.url,
-            team_member.nature_id,
-            team_member.item_id,
-            team_member.move_1_id,
-            team_member.move_2_id,
-            team_member.move_3_id,
-            team_member.move_4_id,
-            team_id,
-            team_member.member_id,
-          ],
-          (error, results) => {
-            if (error) {
-              rejected(error)
-              return
-            }
-            accepted(team_id)
-          }
-        )
-      })
     })
   },
 
