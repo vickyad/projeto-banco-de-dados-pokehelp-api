@@ -47,9 +47,8 @@ module.exports = {
               team: results[1],
             }
 
-            // console.log(data)
             database.query(
-              'SELECT name FROM Pokemons WHERE pokemon_id = ? OR pokemon_id = ? OR pokemon_id = ? OR pokemon_id = ? OR pokemon_id = ? OR pokemon_id = ?',
+              'SELECT name, pokemon_id FROM Pokemons WHERE pokemon_id = ? OR pokemon_id = ? OR pokemon_id = ? OR pokemon_id = ? OR pokemon_id = ? OR pokemon_id = ?',
               [
                 data.team[0].pokemon_id,
                 data.team[1].pokemon_id,
@@ -67,13 +66,14 @@ module.exports = {
                 data.team.map((teamMember, index) => {
                   data.team[index] = {
                     ...teamMember,
-                    name: results[index].name,
+                    name: results.find(
+                      (poke) => poke.pokemon_id === teamMember.pokemon_id
+                    ).name,
                   }
                 })
                 accepted(data)
               }
             )
-            console.log(data)
           } else {
             accepted(false)
           }

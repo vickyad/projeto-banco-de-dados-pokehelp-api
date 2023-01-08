@@ -2,11 +2,19 @@ const express = require('express')
 const PokemonController = require('./controllers/PokemonController')
 const TeamController = require('./controllers/TeamController')
 const ChartsController = require('./controllers/ChartsController')
+const MoveController = require('./controllers/MoveController')
+const NatureController = require('./controllers/NatureController')
+const ItemController = require('./controllers/ItemController')
 
 const router = express.Router()
 
 router.get('/pokemons', PokemonController.getAll)
 router.get('/pokemon/:pokedex_number', PokemonController.getOne)
+
+router.get('/items', ItemController.getAll)
+router.get('/moves/:pokemon_id', MoveController.getAll)
+router.get('/natures', NatureController.getAll)
+
 router.get('/teams', TeamController.getAll)
 router.get('/team/:team_id', TeamController.getOne)
 router.post('/team', TeamController.insert)
