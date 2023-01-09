@@ -134,7 +134,42 @@ module.exports = {
           }
 
           database.query(
-            'UPDATE Team_Member SET pokemon_id = ?, url = ?, nature_id = ?, item_id = ?, move_1_id = ?, move_2_id = ?, move_3_id = ?, move_4_id = ? WHERE team_id = ? AND member_id = ?;UPDATE Team_Member SET pokemon_id = ?, url = ?, nature_id = ?, item_id = ?, move_1_id = ?, move_2_id = ?, move_3_id = ?, move_4_id = ? WHERE team_id = ? AND member_id = ?;UPDATE Team_Member SET pokemon_id = ?, url = ?, nature_id = ?, item_id = ?, move_1_id = ?, move_2_id = ?, move_3_id = ?, move_4_id = ? WHERE team_id = ? AND member_id = ?;UPDATE Team_Member SET pokemon_id = ?, url = ?, nature_id = ?, item_id = ?, move_1_id = ?, move_2_id = ?, move_3_id = ?, move_4_id = ? WHERE team_id = ? AND member_id = ?;UPDATE Team_Member SET pokemon_id = ?, url = ?, nature_id = ?, item_id = ?, move_1_id = ?, move_2_id = ?, move_3_id = ?, move_4_id = ? WHERE team_id = ? AND member_id = ?;UPDATE Team_Member SET pokemon_id = ?, url = ?, nature_id = ?, item_id = ?, move_1_id = ?, move_2_id = ?, move_3_id = ?, move_4_id = ? WHERE team_id = ? AND member_id = ?;',
+            'DELETE FROM Team_Member WHERE team_id = ?;',
+            [team_id],
+            (error, results) => {
+              if (error) {
+                rejected(error)
+                return
+              }
+              team.map((team_member) => {
+                database.query(
+                  'INSERT INTO Team_Member (team_id, pokemon_id, url, nature_id, item_id, move_1_id, move_2_id, move_3_id, move_4_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                  [
+                    team_id,
+                    team_member.pokemon_id,
+                    team_member.url,
+                    team_member.nature_id,
+                    team_member.item_id,
+                    team_member.move_1_id,
+                    team_member.move_2_id,
+                    team_member.move_3_id,
+                    team_member.move_4_id,
+                  ],
+                  (error, results) => {
+                    if (error) {
+                      rejected(error)
+                      return
+                    }
+                    accepted(team_id)
+                  }
+                )
+              })
+            }
+          )
+
+          /*
+          database.query(
+            'INSERT INTO Team_Member (team_id, pokemon_id, url, nature_id, item_id, move_1_id, move_2_id, move_3_id, move_4_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);INSERT INTO Team_Member (team_id, pokemon_id, url, nature_id, item_id, move_1_id, move_2_id, move_3_id, move_4_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);INSERT INTO Team_Member (team_id, pokemon_id, url, nature_id, item_id, move_1_id, move_2_id, move_3_id, move_4_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);INSERT INTO Team_Member (team_id, pokemon_id, url, nature_id, item_id, move_1_id, move_2_id, move_3_id, move_4_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);INSERT INTO Team_Member (team_id, pokemon_id, url, nature_id, item_id, move_1_id, move_2_id, move_3_id, move_4_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);INSERT INTO Team_Member (team_id, pokemon_id, url, nature_id, item_id, move_1_id, move_2_id, move_3_id, move_4_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);',
             [
               team[0].pokemon_id,
               team[0].url,
@@ -205,6 +240,7 @@ module.exports = {
               accepted(team_id)
             }
           )
+          */
         }
       )
     })
