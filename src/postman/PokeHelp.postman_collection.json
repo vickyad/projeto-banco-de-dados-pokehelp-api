@@ -1,0 +1,427 @@
+{
+	"info": {
+		"_postman_id": "d622c5e9-e423-4d47-b814-8ddcbd331b51",
+		"name": "PokeHelp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13186952"
+	},
+	"item": [
+		{
+			"name": "Get All Pokemons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/pokemons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"pokemons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Pokemon",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/pokemon/:pokedex_number",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"pokemon",
+						":pokedex_number"
+					],
+					"variable": [
+						{
+							"key": "pokedex_number",
+							"value": "92"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Moves",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/moves/:pokemon_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"moves",
+						":pokemon_id"
+					],
+					"variable": [
+						{
+							"key": "pokemon_id",
+							"value": "808"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Natures",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/natures",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"natures"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Teams",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/teams",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Team",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/team/:team_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"team",
+						":team_id"
+					],
+					"variable": [
+						{
+							"key": "team_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Team",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"team_name\": \"Post Team\",\r\n    \"team\": [\r\n        {\r\n            \"pokemon_id\": 333,\r\n            \"url\": \"https://img.pokemondb.net/sprites/home/normal/taillow.png\",\r\n            \"nature_id\": 13,\r\n            \"item_id\": 104,\r\n            \"move_1_id\": 4341,\r\n            \"move_2_id\": 3781,\r\n            \"move_3_id\": 4001,\r\n            \"move_4_id\": 3788\r\n        },\r\n        {\r\n            \"pokemon_id\": 898,\r\n            \"url\": \"https://img.pokemondb.net/sprites/home/normal/minior.png\",\r\n            \"nature_id\": 8,\r\n            \"item_id\": 10,\r\n            \"move_1_id\": 3773,\r\n            \"move_2_id\": 4368,\r\n            \"move_3_id\": 3961,\r\n            \"move_4_id\": 4104\r\n        },\r\n        {\r\n            \"pokemon_id\": 941,\r\n            \"url\": \"https://img.pokemondb.net/sprites/home/normal/scorbunny.png\",\r\n            \"nature_id\": 23,\r\n            \"item_id\": 182,\r\n            \"move_1_id\": 3758,\r\n            \"move_2_id\": 4061,\r\n            \"move_3_id\": 4423,\r\n            \"move_4_id\": 4009\r\n        },\r\n        {\r\n            \"pokemon_id\": 124,\r\n            \"url\": \"https://img.pokemondb.net/sprites/home/normal/gengar.png\",\r\n            \"nature_id\": 19,\r\n            \"item_id\": 319,\r\n            \"move_1_id\": 3802,\r\n            \"move_2_id\": 4250,\r\n            \"move_3_id\": 3940,\r\n            \"move_4_id\": 4008 \t\t\t\r\n        },\r\n        {\r\n            \"pokemon_id\": 450,\r\n            \"url\": \"https://img.pokemondb.net/sprites/home/normal/registeel.png\",\r\n            \"nature_id\": 7,\r\n            \"item_id\": 262,\r\n            \"move_1_id\": 3837,\r\n            \"move_2_id\": 4067,\r\n            \"move_3_id\": 4259,\r\n            \"move_4_id\": 3849\r\n        },\r\n        {\r\n            \"pokemon_id\": 575,\r\n            \"url\": \"https://img.pokemondb.net/sprites/home/normal/palkia.png\",\r\n            \"nature_id\": 10,\r\n            \"item_id\": 184,\r\n            \"move_1_id\": 4011,\r\n            \"move_2_id\": 3883,\r\n            \"move_3_id\": 4184,\r\n            \"move_4_id\": 4016\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3003/team",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"team"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Team",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"team_name\": \"Edited Team\",\r\n    \"team\": [\r\n        {\r\n            \"member_id\": 25,\r\n            \"pokemon_id\": 678,\r\n            \"url\": \"https://img.pokemondb.net/sprites/home/normal/reuniclus.png\",\r\n            \"nature_id\": 13,\r\n            \"item_id\": 104,\r\n            \"move_1_id\": 4341,\r\n            \"move_2_id\": 3781,\r\n            \"move_3_id\": 4001,\r\n            \"move_4_id\": 3788\r\n        },\r\n        {\r\n            \"member_id\": 26,\r\n            \"pokemon_id\": 254,\r\n            \"url\": \"https://img.pokemondb.net/sprites/home/normal/steelix.png\",\r\n            \"nature_id\": 8,\r\n            \"item_id\": 10,\r\n            \"move_1_id\": 3773,\r\n            \"move_2_id\": 4368,\r\n            \"move_3_id\": 3961,\r\n            \"move_4_id\": 4104\r\n        },\r\n        {\r\n            \"member_id\": 27,\r\n            \"pokemon_id\": 941,\r\n            \"url\": \"https://img.pokemondb.net/sprites/home/normal/scorbunny.png\",\r\n            \"nature_id\": 23,\r\n            \"item_id\": 182,\r\n            \"move_1_id\": 3758,\r\n            \"move_2_id\": 4061,\r\n            \"move_3_id\": 4423,\r\n            \"move_4_id\": 4009\r\n        },\r\n        {\r\n            \"member_id\": 28,\r\n            \"pokemon_id\": 337,\r\n            \"url\": \"https://img.pokemondb.net/sprites/home/normal/ralts.png\",\r\n            \"nature_id\": 3,\r\n            \"item_id\": 319,\r\n            \"move_1_id\": 3802,\r\n            \"move_2_id\": 4250,\r\n            \"move_3_id\": 3940,\r\n            \"move_4_id\": 4008 \t\t\t\r\n        },\r\n        {\r\n            \"member_id\": 29,\r\n            \"pokemon_id\": 136,\r\n            \"url\": \"https://img.pokemondb.net/sprites/home/normal/cubone.png\",\r\n            \"nature_id\": 7,\r\n            \"item_id\": 262,\r\n            \"move_1_id\": 3837,\r\n            \"move_2_id\": 4067,\r\n            \"move_3_id\": 4259,\r\n            \"move_4_id\": 3849\r\n        },\r\n        {\r\n            \"member_id\": 30,\r\n            \"pokemon_id\": 123,\r\n            \"url\": \"https://img.pokemondb.net/sprites/home/normal/haunter.png\",\r\n            \"nature_id\": 10,\r\n            \"item_id\": 184,\r\n            \"move_1_id\": 4011,\r\n            \"move_2_id\": 3883,\r\n            \"move_3_id\": 4184,\r\n            \"move_4_id\": 4016\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3003/team/:team_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"team",
+						":team_id"
+					],
+					"variable": [
+						{
+							"key": "team_id",
+							"value": "9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Team",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/team/:team_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"team",
+						":team_id"
+					],
+					"variable": [
+						{
+							"key": "team_id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Type Analysis",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/analysis/types",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"analysis",
+						"types"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Type per Generation Analysis",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/analysis/type_generation/:generation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"analysis",
+						"type_generation",
+						":generation"
+					],
+					"variable": [
+						{
+							"key": "generation",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Type for Legendary Analysis",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/analysis/type_legendary",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"analysis",
+						"type_legendary"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Type Combination Analysis",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/analysis/type_combinations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"analysis",
+						"type_combinations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Most Common Moves Analysis",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/analysis/common_moves",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"analysis",
+						"common_moves"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Unique Move Types Analysis",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/analysis/unique_moves_types",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"analysis",
+						"unique_moves_types"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Unique Move Categories Analysis Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/analysis/unique_moves_categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"analysis",
+						"unique_moves_categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Average Stats Analysis",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/analysis/avg_stats/:type",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"analysis",
+						"avg_stats",
+						":type"
+					],
+					"variable": [
+						{
+							"key": "type",
+							"value": "Bug"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
