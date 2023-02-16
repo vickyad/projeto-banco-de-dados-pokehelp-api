@@ -8,6 +8,10 @@
 
 This repository is the API from the Pokehelp, an application that provides a pokédex, a simplified team builder and somes statistics about the types and moves throughout the generations. 
 
+## Tools
+[![Tools](https://skills.thijs.gg/icons?i=react,js,express,mysql&theme=dark)](https://skills.thijs.gg)
+
+
 ## How to install and run the project
 After cloning the project, you can run:
 
