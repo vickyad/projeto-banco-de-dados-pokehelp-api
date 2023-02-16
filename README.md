@@ -30,3 +30,19 @@ Open http://localhost:3003 to view it in the browser.
 
 The page will reload if you make edits.
 You will also see any lint errors in the console.
+
+## Learn more
+
+### React JS
+
+To learn more about React, you can check out the React Documentation:
+
+- [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- [React documentation](https://reactjs.org/).
+
+### Expressjs
+
+To learn more about Expressjs, you can check out these resources:
+
+- [Getting Started](https://expressjs.com/en/starter/installing.html)
+- [Express Guide](https://expressjs.com/en/guide/routing.html)
